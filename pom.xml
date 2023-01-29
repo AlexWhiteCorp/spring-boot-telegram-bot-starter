@@ -142,7 +142,6 @@
                     <merge>true</merge>
                     <repositoryName>${github.repo.name}</repositoryName>
                     <repositoryOwner>${github.repo.owner}</repositoryOwner>
-                    <server>AlexWhiteCorp</server>
                 </configuration>
                 <executions>
                     <execution>
