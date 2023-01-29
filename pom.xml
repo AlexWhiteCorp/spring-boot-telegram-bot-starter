@@ -6,7 +6,7 @@
 
     <groupId>com.alexcorp.springspirit</groupId>
     <artifactId>spring-boot-telegram-bot-starter</artifactId>
-    <version>0.1.0-SNAPSHOT-2</version>
+    <version>0.1.0-SNAPSHOT-3</version>
     <packaging>jar</packaging>
     <name>Spring Boot Telegram Bot Starter</name>
 
@@ -142,7 +142,7 @@
                     <merge>true</merge>
                     <repositoryName>${github.repo.name}</repositoryName>
                     <repositoryOwner>${github.repo.owner}</repositoryOwner>
-                    <server>AlexWhiteCorp</server>
+                    <server>github</server>
                 </configuration>
                 <executions>
                     <execution>
