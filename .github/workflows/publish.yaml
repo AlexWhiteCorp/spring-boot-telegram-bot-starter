@@ -28,5 +28,6 @@ jobs:
           echo "::set-output name=version::$VERSION"
 
       - name: Build and Deploy artifacts to GitHub Maven Repo
-        run: |
-          mvn deploy
+        run: mvn deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
