@@ -1,0 +1,32 @@
+name: Publish
+on:
+  push:
+    branches:
+      - develop
+      - main
+  pull_request:
+
+jobs:
+  run_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 17 ]
+    name: Build project with Java ${{ matrix.java }} and publish builds to GitHub Maven Repo
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+
+      - name: Get version
+        id: release-version
+        run: |
+          export VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "::set-output name=version::$VERSION"
+
+      - name: Build and Deploy artifacts to GitHub Maven Repo
+        run: |
+          mvn deploy
