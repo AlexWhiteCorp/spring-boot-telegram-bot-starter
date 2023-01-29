@@ -99,7 +99,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>file://${maven.repo.internal}</url>
+            <url>https://maven.pkg.github.com/AlexWhiteCorp/spring-boot-telegram-bot-starter</url>
         </repository>
     </distributionManagement>
 </project>
