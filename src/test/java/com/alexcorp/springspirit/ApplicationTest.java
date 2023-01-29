@@ -10,4 +10,5 @@ class ApplicationTest {
     void contextLoads() {
         assertTrue(2 == 2);
     }
+
 }
