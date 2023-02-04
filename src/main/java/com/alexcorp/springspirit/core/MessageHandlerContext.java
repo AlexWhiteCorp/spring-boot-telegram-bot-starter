@@ -3,7 +3,6 @@ package com.alexcorp.springspirit.core;
 import com.alexcorp.springspirit.core.session.BotSession;
 import com.alexcorp.springspirit.exception.UpdateHandlerNotFoundException;
 import datadog.trace.api.DDTags;
-import datadog.trace.api.interceptor.MutableSpan;
 import io.opentracing.Scope;
 import io.opentracing.Span;
 import io.opentracing.Tracer;
@@ -85,7 +84,6 @@ public class MessageHandlerContext implements HandlerContext {
                         spanBuilder.withTag("var." + entry.getKey(), entry.getValue());
                     }
                     Span span = spanBuilder.start();
-                    ((MutableSpan) span).getLocalRootSpan();
 
                     try (Scope scope = tracer.activateSpan(span)) {
                         Object result = handler.invoke(controllerBeanObject, paramValues);
