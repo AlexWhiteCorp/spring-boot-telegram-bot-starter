@@ -47,6 +47,7 @@ public class WebHookBot extends TelegramWebhookBot implements TelegramBot {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         try {
             SetWebhook webhook = new SetWebhook();
+            webhook.setUrl(properties.getWebHook().getUrl());
 
             telegramBotsApi.registerBot(this, webhook);
             log.info("Telegram Bot @" + properties.getUsername() + " started");
