@@ -6,7 +6,7 @@
 
     <groupId>com.alexcorp.springspirit</groupId>
     <artifactId>spring-boot-telegram-bot-starter</artifactId>
-    <version>0.1.0-SNAPSHOT-3</version>
+    <version>0.1.0-SNAPSHOT-4</version>
     <packaging>jar</packaging>
     <name>Spring Boot Telegram Bot Starter</name>
 
