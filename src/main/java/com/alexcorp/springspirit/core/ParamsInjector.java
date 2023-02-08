@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.methods.ForwardMessage;
 import org.telegram.telegrambots.meta.api.methods.polls.SendPoll;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
+import org.telegram.telegrambots.meta.api.objects.Document;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -29,7 +30,7 @@ public class ParamsInjector {
                                          BotSession session,
                                          Map<String, String> vars) {
         Message msg = update.getMessage();
-        if(msg == null) {
+        if (msg == null) {
             msg = update.getCallbackQuery().getMessage();
         }
 
@@ -47,6 +48,11 @@ public class ParamsInjector {
 
             if (paramType.equals(Message.class)) {
                 paramValues[i] = msg;
+                continue;
+            }
+
+            if (paramType.equals(Document.class)) {
+                paramValues[i] = msg.getDocument();
                 continue;
             }
 

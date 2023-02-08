@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
@@ -113,5 +114,10 @@ public class WebHookBot extends TelegramWebhookBot implements TelegramBot {
     @Override
     public <T extends Message, Method extends BotApiMethod<T>> T send(Method method) throws TelegramApiException {
         return execute(method);
+    }
+
+    @Override
+    public DefaultAbsSender getClient() {
+        return this;
     }
 }

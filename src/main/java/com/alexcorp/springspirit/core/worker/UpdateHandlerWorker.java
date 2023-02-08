@@ -1,5 +1,6 @@
 package com.alexcorp.springspirit.core.worker;
 
+import com.alexcorp.springspirit.core.FileHandlerContext;
 import com.alexcorp.springspirit.core.KeyboardHandlerContext;
 import com.alexcorp.springspirit.core.MessageHandlerContext;
 import com.alexcorp.springspirit.core.RequestContext;
@@ -34,6 +35,7 @@ public class UpdateHandlerWorker implements Runnable {
 
     private final TelegramBot bot;
     private final MessageHandlerContext msgHandlerCtx;
+    private final FileHandlerContext fileHandlerContext;
     private final KeyboardHandlerContext keyboardHandlerCtx;
 
     private final SessionService sessionService;
@@ -95,7 +97,12 @@ public class UpdateHandlerWorker implements Runnable {
                 Message msg = update.getMessage();
                 BotSession session = sessionService.loadUserSession(msg.getChatId(), msg.getFrom().getId());
                 requestContext.initRequest(session);
-                result = msgHandlerCtx.handle(update);
+
+                if(msg.getDocument() != null) {
+                    result = fileHandlerContext.handle(update);
+                } else {
+                    result = msgHandlerCtx.handle(update);
+                }
             }
 
             return result;
